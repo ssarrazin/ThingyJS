@@ -49,7 +49,7 @@ class FeatureOperations {
     }
 
     this.thingyController.addExecutedOperation(this.type, "connect");
-    
+
     if (("connected" in this.characteristic) && this.characteristic.connected) {
       if (this.device.logEnabled) {
         console.log(`You're already connected to the ${this.type} feature`);
@@ -97,13 +97,13 @@ class FeatureOperations {
           this.thingyController.setGattStatus(true);
           this.thingyController.enqueue(this.type, "connect", this._connect.bind(this));
         }
-        
+
         this.characteristic.connected = false;
 
         if ("utilities" in this) {
           this.utilities.processEvent("error", this.type, error);
         }
-        
+
         return false;
       }
     } else {
@@ -319,8 +319,9 @@ class FeatureOperations {
       if (enable) {
         try {
           const csn = await characteristic.startNotifications();
+          console.log(csn);
           this.thingyController.setGattStatus(true);
-          
+
           if (!this.characteristic.hasEventListener) {
             csn.addEventListener("characteristicvaluechanged", onReading.bind(this));
             this.characteristic.hasEventListener = true;

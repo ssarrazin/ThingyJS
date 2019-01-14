@@ -30,7 +30,7 @@
         const deviceName = await device.name.read();
         console.log(deviceName);
         await device.temperature.start();
-        await device.addEventListener("Temperature", logData);
+        await device.addEventListener("temperature", logData);
         await device.addEventListener("button", BTlogData);
         await device.button.start();
       }
