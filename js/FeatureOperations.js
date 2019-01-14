@@ -319,7 +319,6 @@ class FeatureOperations {
       if (enable) {
         try {
           const csn = await characteristic.startNotifications();
-          console.log(csn);
           this.thingyController.setGattStatus(true);
 
           if (!this.characteristic.hasEventListener) {
